@@ -1,0 +1,9 @@
+ressources/
+.DS_Store
+*~
+a.out
+*.o
+*.a
+fdf
+*.fdf
+fractol
