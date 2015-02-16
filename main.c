@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/11 18:13:14 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/16 21:47:39 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int		is_arg_legit(char *arg)
 
 int		mlx_escape(int keycode, t_env *e)
 {
-	if (keycode == 65307)
+	if (keycode == ESC_CODE)
 		exit(0);
 	return (0);
 }
 
 int		draw_frac(t_env *e)
 {
-	fractol(e);
+	ft_putpix(e, 5, 5, 0xFFFFFF);
 	return (0);
 }
 
@@ -43,13 +43,14 @@ int		main(int ac, char **av)
 	if (ac == 2 && is_arg_legit(av[1]))
 	{
 		e.mlx = mlx_init();
-		e.win = mlx_new_window(e.mlx, 1280, 800, "Fractol");
+		e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
 		e.arg = av[1];
+		e.img = mlx_new_image(e.mlx, WIN_WIDTH, WIN_HEIGHT);
 		mlx_key_hook(e.win, mlx_escape, &e);
 		mlx_expose_hook(e.win, draw_frac, &e);
 		mlx_loop(e.mlx);
 	}
 	else
-		ft_putstr_fd("available options: [jul; mand; 3rd]\n", 2);
+		ft_putstr_fd("Available options: [jul; mand; 3rd]\n", 2);
 	return (0);
 }

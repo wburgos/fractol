@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 NAME = fractol
-SRCS = main.c draw.c
+SRCS = main.c draw.c image.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

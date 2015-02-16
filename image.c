@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/16 21:04:47 by wburgos          ###   ########.fr       */
+/*   Created: 2015/02/16 18:12:37 by wburgos           #+#    #+#             */
+/*   Updated: 2015/02/16 22:39:20 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include <stdio.h>
+#include "fractol.h"
 
-# define WIN_WIDTH 	1280
-# define WIN_HEIGHT 800
-# define ESC_CODE	65307	
-
-typedef struct	s_env
+void	ft_putpix(t_env *e, int x, int y, int color)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*arg;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	char	*addr_data;
-}				t_env;
+	char	*toto;
+	
+	toto = mlx_get_data_addr(e->img, &(e->bpp), &(e->size_line), &(e->endian));
+}
 
-void	ft_putpix(t_env *e, int x, int y, int color);
-
-#endif
