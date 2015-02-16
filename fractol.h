@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/16 21:04:47 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/16 23:00:02 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_env
 	void	*win;
 	void	*img;
 	char	*arg;
+	char	*data;
 	int		bpp;
 	int		size_line;
 	int		endian;
