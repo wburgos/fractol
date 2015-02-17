@@ -6,15 +6,15 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 10:44:16 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/17 12:10:46 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_WIDTH 		1280
-# define WIN_HEIGHT 	800
+# define WIN_WIDTH 		2560
+# define WIN_HEIGHT 	1440
 # define ESC_CODE		65307
 # define LEFT_ARR		65361
 # define UP_ARR			65362

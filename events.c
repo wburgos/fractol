@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 09:20:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 10:50:15 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/17 11:41:21 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@
 
 int		keys_listener(int keycode, t_env *e)
 {
+	double		step;
+
+	step = 1 / e->camera.zoom;
 	if (keycode == ESC_CODE)
 		exit(0);
 	if (keycode == LEFT_ARR)
-		e->camera.move_x -= 0.1;
+		e->camera.move_x -= step;
 	if (keycode == UP_ARR)
-		e->camera.move_y -= 0.1;
+		e->camera.move_y -= step;
 	if (keycode == RIGHT_ARR)
-		e->camera.move_x += 0.1;
+		e->camera.move_x += step;
 	if (keycode == DOWN_ARR)
-		e->camera.move_y += 0.1;
+		e->camera.move_y += step;
 	if (keycode == LEFT_ARR || keycode == UP_ARR
 		|| keycode == RIGHT_ARR || keycode == DOWN_ARR)
 		render_fract(e);
@@ -34,23 +37,12 @@ int		keys_listener(int keycode, t_env *e)
 
 int		mouse_listener(int button, int x, int y, t_env *e)
 {
-	static int	i = 0;
-
 	if (button == WHEEL_UP)
-	{
-		i++;
-		e->camera.zoom += 0.01;
-	}
+		e->camera.zoom += 1;
 	if (button == WHEEL_DOWN)
-	{
-		i++;
-		e->camera.zoom -= 0.01;
-	}
-	if (i == 42)
-	{
+		e->camera.zoom -= 1;
+	if (button == WHEEL_UP || button == WHEEL_DOWN)
 		render_fract(e);
-		i = 0;
-	}
 	return (0);
 }
 

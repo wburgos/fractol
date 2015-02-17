@@ -6,10 +6,11 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 10:22:46 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/17 11:47:26 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "fractol.h"
 
 int		is_arg_legit(char *arg)
@@ -33,16 +34,17 @@ int		render_fract(t_env *e)
 	return (0);
 }
 
-void	init_params(t_env *e)
+t_env	init_params(t_env e)
 {
-	if (e->arg == 1)
+	if (e.arg == 1)
 	{
-		(e->camera).zoom = 1;
-		(e->camera).move_x = 0;
-		(e->camera).move_y = 0;
-		(e->params).const_r = -0.7;
-		(e->params).const_i = 0.27015;
+		e.camera.zoom = 1;
+		e.camera.move_x = 0;
+		e.camera.move_y = 0;
+		e.params.const_r = -0.7;
+		e.params.const_i = 0.27015;
 	}
+	return (e);
 }
 
 int		main(int ac, char **av)
@@ -56,7 +58,7 @@ int		main(int ac, char **av)
 		e.img = mlx_new_image(e.mlx, WIN_WIDTH, WIN_HEIGHT);
 		e.data = mlx_get_data_addr(e.img, &(e.bpp), &(e.size_line),
 			&(e.endian));
-		init_params(&e);
+		e = init_params(e);
 		mlx_key_hook(e.win, keys_listener, &e);
 		mlx_expose_hook(e.win, render_fract, &e);
 		mlx_mouse_hook(e.win, mouse_listener, &e);
