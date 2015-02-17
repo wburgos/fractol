@@ -6,12 +6,12 @@
 #    By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/18 21:53:26 by wburgos           #+#    #+#              #
-#    Updated: 2015/02/11 18:05:12 by wburgos          ###   ########.fr        #
+#    Updated: 2015/02/17 01:12:49 by wburgos          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fractol
-SRCS = main.c draw.c image.c
+SRCS = main.c draw.c image.c 
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
