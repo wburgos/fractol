@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 15:53:36 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/19 23:19:21 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@ int		render_fract(t_env *e)
 {
 	ft_bzero(e->data, (WIN_HEIGHT * e->size_line) +
 		(WIN_WIDTH + (e->bpp >> 3)));
-	if (e->arg == 1)
-		draw_julia(e);
+	draw_fract(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (0);
 }
 
 t_env	init_params(t_env e)
 {
-	e.camera.fixed = 0;
+	e.fixed = 0;
 	if (e.arg == 1)
 	{
-		e.camera.zoom = 1;
-		e.camera.move_x = 0;
-		e.camera.move_y = 0;
-		e.params.const_r = -0.7;
-		e.params.const_i = 0.27015;
+		e.zoom = 1;
+		e.move_x = 0;
+		e.move_y = 0;
+		e.const_r = -0.7;
+		e.const_i = 0.27015;
 	}
 	return (e);
 }
@@ -67,6 +66,10 @@ int		main(int ac, char **av)
 		mlx_loop(e.mlx);
 	}
 	else
-		ft_putstr_fd("Usage:\n./fractol j: print julia set\n./fractol m: print mandelbrot set\n./fractol f: print fatou set\n", 2);
+	{
+		ft_putstr_fd("Usage:\n./fractol j: print julia set\n", 2);
+		ft_putstr_fd("./fractol m: print mandelbrot set\n", 2);
+		ft_putstr_fd("./fractol f: print fatou set\n", 2);
+	}
 	return (0);
 }

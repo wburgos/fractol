@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 16:43:11 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/19 23:17:06 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,15 @@
 
 # include <mlx.h>
 
-typedef struct	s_params
+typedef struct	s_colors
 {
-	double		old_r;
-	double		old_i;
-	double		new_r;
-	double		new_i;
-	double		const_r;
-	double		const_i;
-}				t_params;
-
-typedef struct	s_camera
-{
-	double		zoom;
-	double		move_x;
-	double		move_y;
-	char		fixed;
-}				t_camera;
-
-typedef struct	s_coords
-{
-	int			x;
-	int			y;
-}				t_coords;
+	int		color;
+	int		ti;
+	int		f;
+	int		l;
+	int		m;
+	int		n;
+}				t_colors;
 
 typedef struct	s_env
 {
@@ -63,10 +49,18 @@ typedef struct	s_env
 	int			bpp;
 	int			size_line;
 	int			endian;
-	char		*addr_data;
-	t_params	params;
-	t_camera	camera;
-	t_coords	coords;
+	double		old_r;
+	double		old_i;
+	double		new_r;
+	double		new_i;
+	double		const_r;
+	double		const_i;
+	int			win_x;
+	int			win_y;
+	double		zoom;
+	double		move_x;
+	double		move_y;
+	char		fixed;
 }				t_env;
 
 void			ft_putpix(t_env *e, int x, int y, int color);
