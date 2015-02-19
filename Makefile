@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 NAME = fractol
-SRCS = main.c julia.c image.c events.c
+SRCS = main.c julia.c image.c events.c colors.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)

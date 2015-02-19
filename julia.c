@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 12:09:08 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/19 16:48:29 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	draw_julia(t_env *e)
 				e->params.new_i = 2 * e->params.old_r * e->params.old_i +
 					e->params.const_i;
 				if ((e->params.new_r * e->params.new_r + e->params.new_i *
-						e->params.new_i) > 4)
+						e->params.new_i) > 2500)
 					break ;
 				i++;
 			}
-			ft_putpix(e, e->coords.x, e->coords.y, 0xAF * i);
+			ft_putpix(e, e->coords.x, e->coords.y, hsv_to_rgb((i % 360) + 512,
+				i % 101, i % 101));
 			e->coords.y++;
 		}
 		e->coords.x++;

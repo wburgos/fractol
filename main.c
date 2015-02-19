@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 11:47:26 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/19 15:53:36 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 int		is_arg_legit(char *arg)
 {
-	if (ft_strcmp(arg, "jul") == 0)
+	if (ft_strcmp(arg, "j") == 0)
 		return (1);
-	if (ft_strcmp(arg, "mand") == 0)
+	if (ft_strcmp(arg, "m") == 0)
 		return (2);
-	if (ft_strcmp(arg, "3rd") == 0)
+	if (ft_strcmp(arg, "f") == 0)
 		return (3);
 	return (0);
 }
@@ -36,6 +36,7 @@ int		render_fract(t_env *e)
 
 t_env	init_params(t_env e)
 {
+	e.camera.fixed = 0;
 	if (e.arg == 1)
 	{
 		e.camera.zoom = 1;
@@ -66,6 +67,6 @@ int		main(int ac, char **av)
 		mlx_loop(e.mlx);
 	}
 	else
-		ft_putstr_fd("Available options: [jul; mand; 3rd]\n", 2);
+		ft_putstr_fd("Usage:\n./fractol j: print julia set\n./fractol m: print mandelbrot set\n./fractol f: print fatou set\n", 2);
 	return (0);
 }

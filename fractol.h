@@ -6,15 +6,15 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/17 12:10:46 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/19 16:43:11 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_WIDTH 		2560
-# define WIN_HEIGHT 	1440
+# define WIN_WIDTH 		400
+# define WIN_HEIGHT 	300
 # define ESC_CODE		65307
 # define LEFT_ARR		65361
 # define UP_ARR			65362
@@ -22,7 +22,8 @@
 # define DOWN_ARR		65364
 # define WHEEL_UP		4
 # define WHEEL_DOWN		5
-# define MAX_ITER		255
+# define LEFT_CLICK		1
+# define MAX_ITER		16
 # define MOTION_MASK	(1L<<6)
 # define MOTION_NOTIFY	6
 
@@ -43,6 +44,7 @@ typedef struct	s_camera
 	double		zoom;
 	double		move_x;
 	double		move_y;
+	char		fixed;
 }				t_camera;
 
 typedef struct	s_coords
@@ -72,5 +74,6 @@ int				render_fract(t_env *e);
 int				keys_listener(int keycode, t_env *e);
 int				mouse_listener(int button, int x, int y, t_env *e);
 int				motion_listener(int x, int y, t_env *e);
+int				hsv_to_rgb(int h, int s, int v);
 
 #endif
