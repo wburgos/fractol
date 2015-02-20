@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 01:14:53 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 09:14:39 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct	s_env
 	double		move_x;
 	double		move_y;
 	char		fixed;
+	int			color;
 }				t_env;
 
 void			ft_putpix(t_env *e, int x, int y, int color);
@@ -73,5 +74,6 @@ int				mouse_listener(int button, int x, int y, t_env *e);
 int				motion_listener(int x, int y, t_env *e);
 int				hsv_to_rgb(int h, int s, int v);
 int				negate_color(int color);
+int				get_rgb(int r, int g, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 01:37:43 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 09:31:48 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		do_iter(t_env *e, double re, double im)
 		e->old_i = e->new_i;
 		e->new_r = e->old_r * e->old_r - e->old_i * e->old_i + re;
 		e->new_i = 2 * e->old_r * e->old_i + im;
-		if ((e->new_r * e->new_r + e->new_i * e->new_i) > 4)
+		if ((e->new_r * e->new_r + e->new_i * e->new_i) > 2000)
 			return (i);
 		i++;
 	}

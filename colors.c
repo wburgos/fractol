@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 14:45:53 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 01:38:14 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 09:39:19 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,10 @@ int		negate_color(int color)
 	r = 255 - (color >> 16);
 	g = 255 - ((color >> 8) & 0xFF);
 	b = 255 - (color & 0xFF);
+	return ((r << 16) + (g << 8) + b);
+}
+
+int		get_rgb(int r, int g, int b)
+{
 	return ((r << 16) + (g << 8) + b);
 }

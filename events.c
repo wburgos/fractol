@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 09:20:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 01:38:00 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 09:35:02 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	reset_camera(t_env *e)
 	e->zoom = 1;
 	e->move_x = 0;
 	e->move_y = 0;
+	e->max_i = 16;
 }
 
 int		needs_rerender(int keycode)
@@ -65,9 +66,9 @@ int		keys_listener(int keycode, t_env *e)
 int		mouse_listener(int button, int x, int y, t_env *e)
 {
 	if (button == WHEEL_UP)
-		e->zoom += 1;
+		e->zoom *= 1.1;
 	if (button == WHEEL_DOWN && e->zoom > 1)
-		e->zoom -= 1;
+		e->zoom /= 1.1;
 	if (button == WHEEL_UP || (button == WHEEL_DOWN && e->zoom > 1))
 		render_fract(e);
 	return (0);
