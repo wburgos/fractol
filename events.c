@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 09:20:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 09:35:02 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 11:11:37 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 void	reset_camera(t_env *e)
 {
 	e->zoom = 1;
-	e->move_x = 0;
+	e->move_x = e->arg == 1 ? 0 : -1;
 	e->move_y = 0;
-	e->max_i = 16;
+	e->max_i = e->arg == 1 ? 16 : 116;
 }
 
 int		needs_rerender(int keycode)

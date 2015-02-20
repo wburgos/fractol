@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 09:23:52 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 13:45:53 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		is_arg_legit(char *arg)
 		return (1);
 	if (ft_strcmp(arg, "m") == 0)
 		return (2);
-	if (ft_strcmp(arg, "f") == 0)
+	if (ft_strcmp(arg, "s") == 0)
 		return (3);
 	return (0);
 }
@@ -35,12 +35,12 @@ int		render_fract(t_env *e)
 t_env	init_params(t_env e)
 {
 	e.fixed = 0;
-	e.max_i = 16;
+	e.zoom = 1;
+	e.move_x = e.arg == 1 ? 0 : -1;
+	e.move_y = 0;
+	e.max_i = e.arg == 1 ? 16 : 116;
 	if (e.arg == 1)
 	{
-		e.zoom = 1;
-		e.move_x = 0;
-		e.move_y = 0;
 		e.const_r = -0.553;
 		e.const_i = -0.63;
 	}
@@ -67,10 +67,9 @@ int		main(int ac, char **av)
 	}
 	else
 	{
-		ft_putstr_fd("Usage:\n./fractol j: julia set\n", 2);
-		ft_putstr_fd("./fractol m: mandelbrot set\n", 2);
-		ft_putstr_fd("./fractol f: fatou set\n", 2);
-		ft_putstr_fd("./fractol help: help you\n", 2);
+		ft_putstr_fd("Usage:\n./fractol j: Julia set\n", 2);
+		ft_putstr_fd("./fractol m: Mandelbrot set\n", 2);
+		ft_putstr_fd("./fractol s: Sierpinski triangles\n", 2);
 	}
 	return (0);
 }

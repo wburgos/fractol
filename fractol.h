@@ -6,15 +6,15 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 09:14:39 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 17:53:02 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIN_WIDTH 		400
-# define WIN_HEIGHT 	300
+# define WIN_WIDTH 		800
+# define WIN_HEIGHT 	600
 # define ESC_CODE		65307
 # define LEFT_ARR		65361
 # define UP_ARR			65362
@@ -31,15 +31,13 @@
 
 # include <mlx.h>
 
-typedef struct	s_colors
+typedef struct	s_color
 {
-	int		color;
-	int		ti;
-	int		f;
-	int		l;
-	int		m;
-	int		n;
-}				t_colors;
+	int		val;
+	int		r;
+	int		g;
+	int		b;
+}				t_color;
 
 typedef struct	s_env
 {
@@ -73,7 +71,8 @@ int				keys_listener(int keycode, t_env *e);
 int				mouse_listener(int button, int x, int y, t_env *e);
 int				motion_listener(int x, int y, t_env *e);
 int				hsv_to_rgb(int h, int s, int v);
-int				negate_color(int color);
+int				negate(int color);
 int				get_rgb(int r, int g, int b);
+int				get_from_palette(int val, int max_val);
 
 #endif
