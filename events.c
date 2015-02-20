@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 09:20:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 23:26:05 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 01:38:00 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,35 @@
 #include <stdlib.h>
 #include "fractol.h"
 
+void	reset_camera(t_env *e)
+{
+	e->zoom = 1;
+	e->move_x = 0;
+	e->move_y = 0;
+}
+
+int		needs_rerender(int keycode)
+{
+	if (keycode == LEFT_ARR
+		|| keycode == UP_ARR
+		|| keycode == RIGHT_ARR
+		|| keycode == DOWN_ARR
+		|| keycode == ZERO_KEY
+		|| keycode == PLUS_KEY
+		|| keycode == MINUS_KEY)
+		return (1);
+	return (0);
+}
+
 int		keys_listener(int keycode, t_env *e)
 {
 	double		step;
 
 	step = 1 / e->zoom;
+	if (keycode == SPACEBAR)
+		e->fixed = e->fixed == 0 ? 1 : 0;
+	if (keycode == ZERO_KEY)
+		reset_camera(e);
 	if (keycode == ESC_CODE)
 		exit(0);
 	if (keycode == LEFT_ARR)
@@ -29,21 +53,22 @@ int		keys_listener(int keycode, t_env *e)
 		e->move_x += step;
 	if (keycode == DOWN_ARR)
 		e->move_y += step;
-	if (keycode == LEFT_ARR || keycode == UP_ARR
-		|| keycode == RIGHT_ARR || keycode == DOWN_ARR)
+	if (keycode == PLUS_KEY)
+		e->max_i += 4;
+	if (keycode == MINUS_KEY && e->max_i > 16)
+		e->max_i -= 4;
+	if (needs_rerender(keycode))
 		render_fract(e);
 	return (0);
 }
 
 int		mouse_listener(int button, int x, int y, t_env *e)
 {
-	if (button == LEFT_CLICK)
-		e->fixed = e->fixed == 0 ? 1 : 0;
 	if (button == WHEEL_UP)
 		e->zoom += 1;
 	if (button == WHEEL_DOWN && e->zoom > 1)
 		e->zoom -= 1;
-	if ((button == WHEEL_UP || button == WHEEL_DOWN) && e->zoom > 1)
+	if (button == WHEEL_UP || (button == WHEEL_DOWN && e->zoom > 1))
 		render_fract(e);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 23:17:06 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 01:14:53 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 # define DOWN_ARR		65364
 # define WHEEL_UP		4
 # define WHEEL_DOWN		5
-# define LEFT_CLICK		1
-# define MAX_ITER		16
+# define ZERO_KEY		48
+# define PLUS_KEY		61
+# define MINUS_KEY		45
+# define SPACEBAR		32
 # define MOTION_MASK	(1L<<6)
 # define MOTION_NOTIFY	6
 
@@ -49,6 +51,7 @@ typedef struct	s_env
 	int			bpp;
 	int			size_line;
 	int			endian;
+	int			max_i;
 	double		old_r;
 	double		old_i;
 	double		new_r;
@@ -69,5 +72,6 @@ int				keys_listener(int keycode, t_env *e);
 int				mouse_listener(int button, int x, int y, t_env *e);
 int				motion_listener(int x, int y, t_env *e);
 int				hsv_to_rgb(int h, int s, int v);
+int				negate_color(int color);
 
 #endif

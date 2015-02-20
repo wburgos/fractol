@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 14:45:53 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 23:20:10 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 01:38:14 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,16 @@ int		hsv_to_rgb(int h, int s, int v)
 	c.color = (c.ti == 4) ? ((c.n << 16) + (c.l << 8) + (v)) : c.color;
 	c.color = (c.ti == 5) ? ((v << 16) + (c.n << 8) + (c.m)) : c.color;
 	return (c.color);
+}
+
+int		negate_color(int color)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	r = 255 - (color >> 16);
+	g = 255 - ((color >> 8) & 0xFF);
+	b = 255 - (color & 0xFF);
+	return ((r << 16) + (g << 8) + b);
 }

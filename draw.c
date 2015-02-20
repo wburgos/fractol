@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/19 23:29:20 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 01:37:43 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		do_iter(t_env *e, double re, double im)
 	int		i;
 
 	i = 0;
-	while (i < MAX_ITER)
+	while (i < e->max_i)
 	{
 		e->old_r = e->new_r;
 		e->old_i = e->new_i;
@@ -61,6 +61,7 @@ void	draw_fract(t_env *e)
 	int			i;
 	double		r;
 	double		im;
+	int			color;
 
 	e->win_x = 0;
 	while (e->win_x < WIN_WIDTH)
@@ -70,8 +71,8 @@ void	draw_fract(t_env *e)
 		{
 			set_env_values(e, &r, &im);
 			i = do_iter(e, r, im);
-			ft_putpix(e, e->win_x, e->win_y, hsv_to_rgb((i % 360) + 512,
-				i % 101, i % 101));
+			ft_putpix(e, e->win_x, e->win_y, hsv_to_rgb(i % 360, i % 101,
+				i % 101));
 			e->win_y++;
 		}
 		e->win_x++;
