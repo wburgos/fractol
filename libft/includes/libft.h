@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 15:51:39 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 03:26:12 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/22 05:23:01 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_color
+{
+	int				val;
+	int				hi;
+	double			f;
+	int				p;
+	int				q;
+	int				t;
+	int				v;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -83,7 +97,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_sign(int n);
 float				ft_abs(float n);
-int					ft_hsvtorgb(int h, int s, int v);
+int					ft_hsvtorgb(double hue, double saturation, double value);
 int					ft_negate(int color);
 int					ft_getcolor(int r, int g, int b);
 #endif

@@ -6,15 +6,34 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:00:21 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/22 05:19:25 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "fractol.h"
+#include "libft.h"
+
+int		pix_color(int i, double r, double c)
+{
+	double		di;
+	double		zn;
+	double		hue;
+
+	di = (double)i;
+	zn = sqrt(r + c);
+	hue = di - log(log(fabs(zn))) / log(2);
+	hue = hue * 5;
+	while (hue > 360.0)
+		hue -= 360.0;
+	while (hue < 0.0)
+		hue += 360.0;
+	return (ft_hsvtorgb(hue, 0.8, 1.0));
+}
 
 void	render_triforce(t_env *e)
 {
-	if((e->win_x + 30 * ((int)e->move_x)) & (e->win_y + 30 * (int)e->move_y))
+	if ((e->win_x + 30 * ((int)e->move_x)) & (e->win_y + 30 * (int)e->move_y))
 		ft_putpix(e, e->win_x, e->win_y, 0x000000);
 	else
 		ft_putpix(e, e->win_x, e->win_y, 0xFFFFFF);
