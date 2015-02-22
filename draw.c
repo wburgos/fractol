@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:19:25 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/22 05:48:25 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		pix_color(int i, double r, double c)
 	double		hue;
 
 	di = (double)i;
-	zn = sqrt(r + c);
-	hue = di - log(log(fabs(zn))) / log(2);
-	hue = hue * 5;
+	zn = sqrt(r * r + c * c);
+	hue = di + 1.0 - log(log(fabs(zn))) / log(2);
+	hue = 0.95 * hue;
 	while (hue > 360.0)
 		hue -= 360.0;
 	while (hue < 0.0)
@@ -45,7 +45,7 @@ void	set_env_values(t_env *e, double *re, double *im)
 	double		i;
 
 	r = 1.5 * (e->win_x - WIN_WIDTH / 2) /
-		(0.5 * e->zoom * WIN_WIDTH) + e->move_x;
+	(0.5 * e->zoom * WIN_WIDTH) + e->move_x;
 	i = (e->win_y - WIN_HEIGHT / 2) / (0.5 * e->zoom * WIN_HEIGHT) + e->move_y;
 	if (e->arg == 1)
 	{
@@ -101,8 +101,8 @@ void	draw_fract(t_env *e)
 			{
 				set_env_values(e, &re, &im);
 				i = do_iter(e, re, im);
-				ft_putpix(e, e->win_x, e->win_y, pix_color(i, e->new_r *
-					e->new_r, e->new_i * e->new_i) * (i < e->max_i));
+				ft_putpix(e, e->win_x, e->win_y,
+					pix_color(i, e->new_r, e->new_i) * (i < e->max_i));
 			}
 			e->win_y++;
 		}
