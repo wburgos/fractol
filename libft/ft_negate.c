@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_negate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/21 17:05:33 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 17:43:48 by wburgos          ###   ########.fr       */
+/*   Created: 2015/02/20 13:17:00 by wburgos           #+#    #+#             */
+/*   Updated: 2015/02/20 13:18:10 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+int		ft_negate(int color)
 {
-	if (alst && *alst)
-	{
-		ft_lstdel(&((*alst)->next), del);
-		ft_lstdelone(alst, del);
-	}
+	int		r;
+	int		g;
+	int		b;
+
+	r = 255 - (color >> 16);
+	g = 255 - ((color >> 8) & 0xFF);
+	b = 255 - (color & 0xFF);
+	return (ft_getcolor(r, g, b));
 }

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   ft_hsvtorgb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/19 14:45:53 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:00:09 by wburgos          ###   ########.fr       */
+/*   Created: 2015/02/20 13:16:13 by wburgos           #+#    #+#             */
+/*   Updated: 2015/02/22 04:28:07 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "fractol.h"
+#include "libft.h"
 
-int		get_rgb(int r, int g, int b)
+int		ft_hsvtorgb(int h, int s, int v)
 {
-	return ((r << 16) + (g << 8) + b);
-}
-
-int		hsv_to_rgb(double hue, double saturation, double value)
-{
-    int hi = ((int)floor(hue / 60)) % 6;
+	int hi = ((int)floor(hue / 60)) % 6;
     double f = hue / 60 - floor(hue / 60);
 
     value = value * 255;
@@ -41,21 +36,4 @@ int		hsv_to_rgb(double hue, double saturation, double value)
         return (get_rgb(t, p, v));
     else
         return (get_rgb(v, p, q));
-}
-
-int		pix_color(int i, double r, double c)
-{
-	double		di;
-	double		zn;
-	double		hue;
-
-	di = (double)i;
-	zn = sqrt(r + c);
-	hue = di - log(log(fabs(zn))) / log(2);
-	hue = hue * 5;
-	while (hue > 360.0)
-		hue -= 360.0;
-	while (hue < 0.0)
-		hue += 360.0;
-	return (hsv_to_rgb(hue, 0.8, 1.0));
 }

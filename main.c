@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 13:45:53 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/22 04:11:29 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_env	init_params(t_env e)
 {
 	e.fixed = 0;
 	e.zoom = 1;
-	e.move_x = e.arg == 1 ? 0 : -1;
+	e.move_x = e.arg == 2 ? -1 : 0;
 	e.move_y = 0;
 	e.max_i = e.arg == 1 ? 16 : 116;
 	if (e.arg == 1)

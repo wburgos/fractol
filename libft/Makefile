@@ -6,12 +6,12 @@
 #    By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 14:13:14 by wburgos           #+#    #+#              #
-#    Updated: 2015/01/18 22:18:00 by wburgos          ###   ########.fr        #
+#    Updated: 2015/02/20 14:48:49 by wburgos          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = libft.a
-FLAGS = -Wall -Wextra -Werror -g3
+FLAGS = -Wall -Wextra -Werror
 SRCS = 	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c \
 		ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c \
@@ -22,7 +22,9 @@ SRCS = 	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c \
 		ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c \
 		ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
-		ft_putendl_fd.c ft_putnbr_fd.c ft_abs.c ft_sign.c
+		ft_putendl_fd.c ft_putnbr_fd.c ft_abs.c ft_sign.c ft_getcolor.c \
+		ft_negate.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c \
+		ft_lstmap.c ft_lstnew.c
 OBJ = $(SRCS:.c=.o)
 INC = includes/
 

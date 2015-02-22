@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/21 14:59:11 by wburgos           #+#    #+#             */
-/*   Updated: 2014/11/23 12:44:42 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/20 17:52:28 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	t_list	*tmp;
-
-	tmp = lst;
-	while (tmp->next)
+	while (lst)
 	{
-		f(tmp);
-		tmp = tmp->next;
+		f(lst);
+		lst = lst->next;
 	}
 }

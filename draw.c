@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 13:54:24 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/22 05:00:21 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	render_triforce(t_env *e)
 {
-	if(e->win_x & e->win_y)
+	if((e->win_x + 30 * ((int)e->move_x)) & (e->win_y + 30 * (int)e->move_y))
 		ft_putpix(e, e->win_x, e->win_y, 0x000000);
 	else
 		ft_putpix(e, e->win_x, e->win_y, 0xFFFFFF);
@@ -25,7 +25,8 @@ void	set_env_values(t_env *e, double *re, double *im)
 	double		r;
 	double		i;
 
-	r = 1.5 * (e->win_x - WIN_WIDTH / 2) / (0.5 * e->zoom * WIN_WIDTH) + e->move_x;
+	r = 1.5 * (e->win_x - WIN_WIDTH / 2) /
+		(0.5 * e->zoom * WIN_WIDTH) + e->move_x;
 	i = (e->win_y - WIN_HEIGHT / 2) / (0.5 * e->zoom * WIN_HEIGHT) + e->move_y;
 	if (e->arg == 1)
 	{
@@ -68,7 +69,6 @@ void	draw_fract(t_env *e)
 	int			i;
 	double		re;
 	double		im;
-	int			color;
 
 	e->win_x = 0;
 	while (e->win_x < WIN_WIDTH)
@@ -82,7 +82,8 @@ void	draw_fract(t_env *e)
 			{
 				set_env_values(e, &re, &im);
 				i = do_iter(e, re, im);
-				ft_putpix(e, e->win_x, e->win_y, get_from_palette(i, e->max_i));
+				ft_putpix(e, e->win_x, e->win_y, pix_color(i, e->new_r *
+					e->new_r, e->new_i * e->new_i) * (i < e->max_i));
 			}
 			e->win_y++;
 		}
