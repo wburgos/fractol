@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/26 14:54:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/26 18:14:14 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 18:17:10 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	render_triforce(t_env *e)
 	t_point	p2;
 	t_point	p3;
 
-	tri.p1.x = 10 - e->zoom + e->move_x;
-	tri.p1.y = WIN_HEIGHT - 10 + e->zoom + e->move_y;
-	tri.p2.x = WIN_WIDTH - 10 + e->zoom + e->move_x;
-	tri.p2.y = WIN_HEIGHT - 10 + e->zoom + e->move_y;
-	tri.p3.x = WIN_WIDTH / 2 + e->move_x;
-	tri.p3.y = 10 - e->zoom + e->move_y;
+	tri.p1.x = 10 - e->zoom - e->move_x;
+	tri.p1.y = WIN_HEIGHT - 10 + e->zoom - e->move_y;
+	tri.p2.x = WIN_WIDTH - 10 + e->zoom - e->move_x;
+	tri.p2.y = WIN_HEIGHT - 10 + e->zoom - e->move_y;
+	tri.p3.x = WIN_WIDTH / 2 - e->move_x;
+	tri.p3.y = 10 - e->zoom - e->move_y;
 	ft_drawline(tri.p1, tri.p2, e);
 	ft_drawline(tri.p1, tri.p3, e);
 	ft_drawline(tri.p3, tri.p2, e);
