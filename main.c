@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:29:50 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 04:11:29 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 18:08:31 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int		render_fract(t_env *e)
 {
 	ft_bzero(e->data, (WIN_HEIGHT * e->size_line) +
 		(WIN_WIDTH + (e->bpp >> 3)));
-	draw_fract(e);
+	if (e->arg == 3)
+		render_triforce(e);
+	else
+		draw_fract(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	return (0);
 }
@@ -39,6 +42,7 @@ t_env	init_params(t_env e)
 	e.move_x = e.arg == 2 ? -1 : 0;
 	e.move_y = 0;
 	e.max_i = e.arg == 1 ? 16 : 116;
+	e.depth = 6;
 	if (e.arg == 1)
 	{
 		e.const_r = -0.553;

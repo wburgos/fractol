@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 09:20:23 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/20 11:11:37 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 18:13:11 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	reset_camera(t_env *e)
 	e->move_x = e->arg == 1 ? 0 : -1;
 	e->move_y = 0;
 	e->max_i = e->arg == 1 ? 16 : 116;
+	e->depth = 6;
 }
 
 int		needs_rerender(int keycode)
@@ -39,7 +40,7 @@ int		keys_listener(int keycode, t_env *e)
 {
 	double		step;
 
-	step = 1 / e->zoom;
+	step = (e->arg == 3) ? 20 : 0.3 / e->zoom;
 	if (keycode == SPACEBAR)
 		e->fixed = e->fixed == 0 ? 1 : 0;
 	if (keycode == ZERO_KEY)
@@ -55,9 +56,9 @@ int		keys_listener(int keycode, t_env *e)
 	if (keycode == DOWN_ARR)
 		e->move_y += step;
 	if (keycode == PLUS_KEY)
-		e->max_i += 4;
+		(e->arg == 3) ? (e->depth += 1) : (e->max_i += 4);
 	if (keycode == MINUS_KEY && e->max_i > 16)
-		e->max_i -= 4;
+		(e->arg == 3) ? (e->depth -= 1) : (e->max_i -= 4);
 	if (needs_rerender(keycode))
 		render_fract(e);
 	return (0);

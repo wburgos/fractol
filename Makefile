@@ -11,7 +11,7 @@
 #******************************************************************************#
 
 NAME = fractol
-SRCS = main.c draw.c image.c events.c
+SRCS = main.c draw.c events.c image.c triangle.c
 OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -19,7 +19,7 @@ all: $(NAME)
 $(NAME):
 	@make re -C libft/
 	@echo "Compiling fractol ..."
-	@gcc -c $(SRCS) -I. -Ilibft/includes -g3
+	@gcc -g3 -c $(SRCS) -I. -Ilibft/includes
 	@gcc -o $(NAME) $(OBJ) -L/usr/X11/lib -Llibft -lmlx -lXext -lX11 -lft
 	@echo "Done"
 

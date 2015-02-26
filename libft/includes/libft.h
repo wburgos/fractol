@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 15:51:39 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:23:01 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 15:27:29 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 # include <string.h>
 
 typedef	unsigned char	t_byte;
+
+typedef struct		s_baseenv
+{
+	void			*mlx;
+	void			*win;
+	void			*img;
+	int				size_line;
+	int				bpp;
+	char			*data;
+	int				endian;
+}					t_baseenv;
 
 typedef struct		s_list
 {

@@ -6,38 +6,13 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 01:46:28 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:48:25 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 15:43:51 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "fractol.h"
 #include "libft.h"
-
-int		pix_color(int i, double r, double c)
-{
-	double		di;
-	double		zn;
-	double		hue;
-
-	di = (double)i;
-	zn = sqrt(r * r + c * c);
-	hue = di + 1.0 - log(log(fabs(zn))) / log(2);
-	hue = 0.95 * hue;
-	while (hue > 360.0)
-		hue -= 360.0;
-	while (hue < 0.0)
-		hue += 360.0;
-	return (ft_hsvtorgb(hue, 0.8, 1.0));
-}
-
-void	render_triforce(t_env *e)
-{
-	if ((e->win_x + 30 * ((int)e->move_x)) & (e->win_y + 30 * (int)e->move_y))
-		ft_putpix(e, e->win_x, e->win_y, 0x000000);
-	else
-		ft_putpix(e, e->win_x, e->win_y, 0xFFFFFF);
-}
 
 void	set_env_values(t_env *e, double *re, double *im)
 {
@@ -83,6 +58,24 @@ int		do_iter(t_env *e, double re, double im)
 	return (i);
 }
 
+int		coloring(int i, double r, double c)
+{
+	double		di;
+	double		zn;
+	double		hue;
+
+	di = (double)i;
+	di += 200;
+	zn = sqrt(r * r + c * c);
+	hue = di + 1.0 - log(log(fabs(zn))) / log(2);
+	hue *= 5;
+	while (hue > 360.0)
+		hue -= 360.0;
+	while (hue < 0.0)
+		hue += 360.0;
+	return (ft_hsvtorgb(hue, 0.8, 1.0));
+}
+
 void	draw_fract(t_env *e)
 {
 	int			i;
@@ -95,15 +88,10 @@ void	draw_fract(t_env *e)
 		e->win_y = 0;
 		while (e->win_y < WIN_HEIGHT)
 		{
-			if (e->arg == 3)
-				render_triforce(e);
-			else
-			{
-				set_env_values(e, &re, &im);
-				i = do_iter(e, re, im);
-				ft_putpix(e, e->win_x, e->win_y,
-					pix_color(i, e->new_r, e->new_i) * (i < e->max_i));
-			}
+			set_env_values(e, &re, &im);
+			i = do_iter(e, re, im);
+			ft_putpix(e, e->win_x, e->win_y,
+				coloring(i, e->new_r, e->new_i) * (i < e->max_i));
 			e->win_y++;
 		}
 		e->win_x++;

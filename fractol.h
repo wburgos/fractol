@@ -6,7 +6,7 @@
 /*   By: wburgos <wburgos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 17:54:01 by wburgos           #+#    #+#             */
-/*   Updated: 2015/02/22 05:16:49 by wburgos          ###   ########.fr       */
+/*   Updated: 2015/02/26 18:14:48 by wburgos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,27 @@
 # define MOTION_NOTIFY	6
 
 # include <mlx.h>
+
+typedef struct	s_point
+{
+	float		x;
+	float		y;
+}				t_point;
+
+typedef struct	s_line
+{
+	float		delta_x;
+	float		delta_y;
+	float		error;
+	float		delta_error;
+}				t_line;
+
+typedef struct	s_tri
+{
+	t_point		p1;
+	t_point		p2;
+	t_point		p3;
+}				t_tri;
 
 typedef struct	s_env
 {
@@ -55,6 +76,7 @@ typedef struct	s_env
 	double		move_y;
 	char		fixed;
 	int			color;
+	int			depth;
 }				t_env;
 
 void			ft_putpix(t_env *e, int x, int y, int color);
@@ -63,5 +85,5 @@ int				keys_listener(int keycode, t_env *e);
 int				mouse_listener(int button, int x, int y, t_env *e);
 int				motion_listener(int x, int y, t_env *e);
 int				pix_color(int i, double r, double c);
-
+void			ft_drawline(t_point p1, t_point p2, t_env *e);
 #endif
